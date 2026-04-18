@@ -1,0 +1,1314 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>الأدوية | فارمازون — PharmaZone Medicines</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Outfit:wght@300;400;500;600;700&family=Noto+Kufi+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ===== VARIABLES ===== */
+:root {
+  --primary: #0B7A5B;
+  --primary-hover: #096348;
+  --primary-light: #12B886;
+  --primary-pale: #E6F9F1;
+  --primary-ghost: #F0FDF7;
+  --accent: #D4A843;
+  --accent-light: #FDF3D7;
+  --danger: #DC3545;
+  --danger-pale: #FDE8EA;
+  --bg: #F6F8F7;
+  --bg-card: #FFFFFF;
+  --text: #1B2E28;
+  --text-secondary: #4A6258;
+  --text-muted: #8DA49A;
+  --border: #DFE8E4;
+  --border-light: #EEF2F0;
+  --shadow-sm: 0 1px 3px rgba(11,122,91,0.06);
+  --shadow: 0 4px 20px rgba(11,122,91,0.08);
+  --shadow-lg: 0 12px 40px rgba(11,122,91,0.12);
+  --shadow-xl: 0 20px 60px rgba(11,122,91,0.16);
+  --radius: 14px;
+  --radius-sm: 10px;
+  --radius-xs: 6px;
+  --transition: 0.25s cubic-bezier(0.4,0,0.2,1);
+  --header-h: 72px;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  font-family: 'Outfit','Noto Kufi Arabic', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.65;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+body[dir="rtl"] { font-family: 'Noto Kufi Arabic','Outfit', sans-serif; }
+
+::-webkit-scrollbar { width:5px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--primary-light); border-radius:5px; }
+
+img { display:block; max-width:100%; }
+a { text-decoration:none; color:inherit; }
+button { cursor:pointer; font-family:inherit; border:none; }
+
+/* ===== HEADER ===== */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-bottom: 1px solid var(--border-light);
+  height: var(--header-h);
+}
+.header-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 36px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+.logo-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+.logo-mark {
+  width: 42px; height: 42px;
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 22px;
+  box-shadow: 0 4px 14px rgba(11,122,91,0.3);
+}
+.logo-name {
+  font-family: 'Playfair Display','Noto Kufi Arabic', serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--primary-hover);
+}
+
+/* Breadcrumb */
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-right: 12px;
+}
+body[dir="ltr"] .breadcrumb { margin-right:0; margin-left:12px; }
+.breadcrumb a { transition: var(--transition); }
+.breadcrumb a:hover { color: var(--primary); }
+.breadcrumb .sep { opacity:0.4; }
+
+/* Header Search */
+.h-search {
+  flex: 1;
+  max-width: 460px;
+  position: relative;
+}
+.h-search input {
+  width: 100%;
+  padding: 11px 46px 11px 18px;
+  border: 2px solid var(--border);
+  border-radius: 50px;
+  font-size: 13.5px;
+  background: var(--primary-ghost);
+  transition: var(--transition);
+  font-family: inherit;
+  color: var(--text);
+}
+body[dir="rtl"] .h-search input { padding: 11px 18px 11px 46px; }
+.h-search input:focus {
+  outline: none;
+  border-color: var(--primary-light);
+  background: #fff;
+  box-shadow: 0 0 0 4px rgba(18,184,134,0.1);
+}
+.h-search input::placeholder { color: var(--text-muted); }
+.h-search-btn {
+  position: absolute;
+  right: 4px; top: 4px;
+  width: 36px; height: 36px;
+  background: var(--primary);
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+}
+body[dir="rtl"] .h-search-btn { right:auto; left:4px; }
+.h-search-btn:hover { background: var(--primary-hover); }
+.h-search-btn svg { width:16px; height:16px; }
+
+/* Header Actions */
+.h-actions { display:flex; align-items:center; gap:6px; margin-inline-start:auto; }
+.h-act-btn {
+  position: relative;
+  width: 42px; height: 42px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  color: var(--text-secondary);
+  transition: var(--transition);
+}
+.h-act-btn:hover { background: var(--primary-pale); color: var(--primary); }
+.h-act-btn svg { width:20px; height:20px; }
+.h-badge {
+  position:absolute; top:4px; right:4px;
+  background: var(--danger);
+  color:#fff; font-size:9px; font-weight:700;
+  width:16px; height:16px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+}
+.lang-btn {
+  padding: 7px 16px;
+  background: var(--primary-pale);
+  color: var(--primary);
+  border-radius: 50px;
+  font-size: 12px;
+  font-weight: 600;
+  transition: var(--transition);
+  letter-spacing: 0.5px;
+}
+.lang-btn:hover { background: var(--primary); color:#fff; }
+
+/* ===== HERO BANNER ===== */
+.page-hero {
+  background: linear-gradient(135deg, #084D38 0%, var(--primary) 50%, var(--primary-light) 100%);
+  padding: 48px 0 44px;
+  position: relative;
+  overflow: hidden;
+}
+.page-hero::before {
+  content:'';
+  position:absolute; inset:0;
+  background:
+    radial-gradient(ellipse at 10% 90%, rgba(212,168,67,0.12) 0%, transparent 50%),
+    radial-gradient(ellipse at 90% 10%, rgba(255,255,255,0.06) 0%, transparent 50%);
+}
+.page-hero::after {
+  content:'';
+  position:absolute;
+  bottom: -2px; left:0; right:0;
+  height:40px;
+  background: var(--bg);
+  border-radius: 50% 50% 0 0;
+}
+.hero-inner {
+  max-width:1400px; margin:0 auto; padding:0 36px;
+  position:relative; z-index:1;
+  display:flex; align-items:center; justify-content:space-between;
+  gap: 32px;
+}
+.hero-text h1 {
+  font-family: 'Playfair Display','Noto Kufi Arabic', serif;
+  font-size: 36px;
+  color: #fff;
+  margin-bottom: 10px;
+}
+.hero-text p {
+  color: rgba(255,255,255,0.75);
+  font-size: 15px;
+  max-width: 520px;
+}
+.hero-stats {
+  display: flex;
+  gap: 28px;
+}
+.hero-stat {
+  text-align: center;
+  padding: 16px 24px;
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: var(--radius);
+}
+.hero-stat .num {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--accent-light);
+  display: block;
+}
+.hero-stat .label {
+  font-size: 12px;
+  color: rgba(255,255,255,0.7);
+  margin-top: 2px;
+}
+
+/* ===== MAIN LAYOUT ===== */
+.main-layout {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 32px 36px 80px;
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 32px;
+}
+
+/* ===== SIDEBAR ===== */
+.sidebar {
+  position: sticky;
+  top: calc(var(--header-h) + 20px);
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.filter-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius);
+  padding: 22px;
+  box-shadow: var(--shadow-sm);
+}
+.filter-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.filter-title svg { width:16px; height:16px; color:var(--primary); }
+
+/* Category list */
+.cat-list { list-style:none; }
+.cat-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  border-radius: var(--radius-xs);
+  cursor: pointer;
+  transition: var(--transition);
+  font-size: 13.5px;
+  color: var(--text-secondary);
+}
+.cat-item:hover { background: var(--primary-pale); color: var(--primary); }
+.cat-item.active {
+  background: var(--primary);
+  color: #fff;
+  font-weight: 600;
+}
+.cat-item .count {
+  font-size: 11px;
+  background: var(--border-light);
+  padding: 2px 8px;
+  border-radius: 20px;
+  font-weight: 600;
+}
+.cat-item.active .count { background: rgba(255,255,255,0.2); color:#fff; }
+
+/* Price range */
+.price-range { padding: 4px 0; }
+.range-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.range-input {
+  flex:1;
+  padding: 9px 12px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-xs);
+  font-size: 13px;
+  font-family: inherit;
+  text-align: center;
+  transition: var(--transition);
+  color: var(--text);
+  background: var(--bg);
+}
+.range-input:focus { outline:none; border-color:var(--primary-light); }
+.range-input::placeholder { color:var(--text-muted); }
+.filter-apply-btn {
+  width: 100%;
+  padding: 10px;
+  background: var(--primary);
+  color: #fff;
+  border-radius: var(--radius-xs);
+  font-size: 13px;
+  font-weight: 600;
+  transition: var(--transition);
+}
+.filter-apply-btn:hover { background: var(--primary-hover); }
+
+/* Brand pills */
+.brand-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.brand-pill {
+  padding: 6px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: 50px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: var(--transition);
+  background: #fff;
+}
+.brand-pill:hover, .brand-pill.active {
+  border-color: var(--primary);
+  background: var(--primary-pale);
+  color: var(--primary);
+}
+
+/* Rating filter */
+.rating-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 0;
+  cursor: pointer;
+  font-size: 13px;
+  color: var(--text-secondary);
+  transition: var(--transition);
+}
+.rating-option:hover { color: var(--primary); }
+.rating-option .stars-f { color: #F6AD55; font-size: 14px; letter-spacing: 1px; }
+.rating-option .up { font-size: 11px; color: var(--text-muted); }
+
+/* Sidebar promo */
+.sidebar-promo {
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  border-radius: var(--radius);
+  padding: 26px 22px;
+  text-align: center;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+.sidebar-promo::before {
+  content:'';
+  position:absolute;
+  top:-30px; right:-30px;
+  width:100px; height:100px;
+  background: rgba(255,255,255,0.08);
+  border-radius:50%;
+}
+.sidebar-promo .promo-emoji { font-size:36px; margin-bottom:10px; }
+.sidebar-promo h4 { font-size:15px; font-weight:700; margin-bottom:6px; }
+.sidebar-promo p { font-size:12px; opacity:0.8; margin-bottom:14px; line-height:1.6; }
+.sidebar-promo-btn {
+  padding: 9px 22px;
+  background: #fff;
+  color: var(--primary);
+  border-radius: 50px;
+  font-size: 12px;
+  font-weight: 700;
+  transition: var(--transition);
+}
+.sidebar-promo-btn:hover { transform:translateY(-2px); box-shadow:0 6px 20px rgba(0,0,0,0.2); }
+
+/* ===== PRODUCTS AREA ===== */
+.products-area { min-width:0; }
+
+/* Toolbar */
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+.results-info {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+.results-info strong { color: var(--text); font-weight:700; }
+.toolbar-actions { display:flex; align-items:center; gap:10px; }
+
+.sort-select {
+  padding: 9px 16px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-xs);
+  font-size: 13px;
+  font-family: inherit;
+  color: var(--text);
+  background: #fff;
+  cursor: pointer;
+  transition: var(--transition);
+  -webkit-appearance: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%238DA49A' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: left 12px center;
+  padding-left: 32px;
+}
+body[dir="ltr"] .sort-select {
+  background-position: right 12px center;
+  padding-left: 16px;
+  padding-right: 32px;
+}
+.sort-select:focus { outline:none; border-color:var(--primary-light); }
+
+.view-toggle { display:flex; gap:4px; }
+.view-btn {
+  width:38px; height:38px;
+  border-radius: var(--radius-xs);
+  display:flex; align-items:center; justify-content:center;
+  background: #fff;
+  border: 1.5px solid var(--border);
+  color: var(--text-muted);
+  transition: var(--transition);
+}
+.view-btn.active, .view-btn:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  background: var(--primary-pale);
+}
+.view-btn svg { width:16px; height:16px; }
+
+/* Product Grid */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
+}
+.products-grid.list-view {
+  grid-template-columns: 1fr;
+}
+
+/* Product Card */
+.p-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: var(--transition);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.p-card:hover {
+  border-color: transparent;
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-5px);
+}
+.list-view .p-card {
+  flex-direction: row;
+}
+.list-view .p-card-img { width:220px; min-height:200px; flex-shrink:0; }
+.list-view .p-card-body { flex:1; padding:24px; }
+
+/* Badges */
+.p-badges {
+  position:absolute; top:12px; right:12px; z-index:3;
+  display:flex; flex-direction:column; gap:5px;
+}
+body[dir="ltr"] .p-badges { right:auto; left:12px; }
+.p-badge-item {
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+.p-b-sale { background: var(--danger-pale); color: var(--danger); }
+.p-b-new { background: #D1FAE5; color: #065F46; }
+.p-b-best { background: var(--accent-light); color: #92722B; }
+.p-b-rx { background: #DBEAFE; color: #1D4ED8; }
+
+/* Wishlist button on card */
+.wish-btn {
+  position:absolute;
+  top:12px; left:12px;
+  z-index:3;
+  width:34px; height:34px;
+  border-radius:50%;
+  background: rgba(255,255,255,0.9);
+  backdrop-filter:blur(8px);
+  display:flex; align-items:center; justify-content:center;
+  color: var(--text-muted);
+  transition: var(--transition);
+  box-shadow: var(--shadow-sm);
+}
+body[dir="rtl"] .wish-btn { left:auto; right:auto; left:12px; }
+body[dir="ltr"] .wish-btn { left:auto; right:12px; }
+.wish-btn:hover { color: #E53E3E; background:#fff; }
+.wish-btn.liked { color: #E53E3E; }
+.wish-btn svg { width:16px; height:16px; }
+
+/* Card Image */
+.p-card-img {
+  position: relative;
+  height: 220px;
+  background: linear-gradient(145deg, #F2F7F5, #E8F0EC);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.p-card-img img {
+  max-width: 85%;
+  max-height: 85%;
+  object-fit: contain;
+  transition: transform 0.4s ease;
+}
+.p-card:hover .p-card-img img { transform: scale(1.08); }
+
+/* Quick actions on hover */
+.quick-actions {
+  position: absolute;
+  bottom: 0; left:0; right:0;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: var(--transition);
+  background: linear-gradient(transparent, rgba(255,255,255,0.9));
+}
+.p-card:hover .quick-actions { opacity:1; transform:translateY(0); }
+.quick-act {
+  width:36px; height:36px;
+  border-radius:50%;
+  background: #fff;
+  border: 1px solid var(--border);
+  display:flex; align-items:center; justify-content:center;
+  color: var(--text-secondary);
+  transition: var(--transition);
+  box-shadow: var(--shadow-sm);
+}
+.quick-act:hover { background:var(--primary); color:#fff; border-color:var(--primary); }
+.quick-act svg { width:14px; height:14px; }
+
+/* Card Body */
+.p-card-body { padding: 18px; flex:1; display:flex; flex-direction:column; }
+
+.p-brand {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--primary-light);
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  margin-bottom: 6px;
+}
+.p-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.5;
+  margin-bottom: 4px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.p-desc {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  line-height: 1.6;
+}
+.p-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+.p-rating {
+  display:flex; align-items:center; gap:4px;
+  font-size:12px;
+}
+.p-rating .star { color:#F6AD55; }
+.p-rating .val { font-weight:600; color:var(--text); }
+.p-rating .cnt { color:var(--text-muted); }
+.p-stock {
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 20px;
+  font-weight: 600;
+}
+.p-stock.in { background:#D1FAE5; color:#065F46; }
+.p-stock.low { background:#FEF3C7; color:#92400E; }
+.p-stock.out { background:var(--danger-pale); color:var(--danger); }
+
+.p-pricing {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 14px;
+  margin-top: auto;
+}
+.p-price {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--primary-hover);
+}
+.p-price-old {
+  font-size: 13px;
+  color: var(--text-muted);
+  text-decoration: line-through;
+}
+.p-discount {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--danger);
+  background: var(--danger-pale);
+  padding: 2px 7px;
+  border-radius: 4px;
+}
+
+/* Add to cart */
+.p-add-btn {
+  width: 100%;
+  padding: 11px;
+  border-radius: var(--radius-xs);
+  font-size: 13px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  transition: var(--transition);
+  background: var(--primary);
+  color: #fff;
+}
+.p-add-btn:hover { background: var(--primary-hover); box-shadow:0 4px 12px rgba(11,122,91,0.3); }
+.p-add-btn.added { background:#065F46; }
+.p-add-btn svg { width:16px; height:16px; }
+
+/* ===== PAGINATION ===== */
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 40px;
+}
+.page-btn {
+  width: 40px; height: 40px;
+  border-radius: var(--radius-xs);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 500;
+  background: var(--bg-card);
+  border: 1.5px solid var(--border);
+  color: var(--text-secondary);
+  transition: var(--transition);
+}
+.page-btn:hover { border-color:var(--primary); color:var(--primary); }
+.page-btn.active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+  font-weight: 700;
+}
+.page-btn.nav-arrow { font-size:18px; }
+
+/* ===== MOBILE FILTER ===== */
+.mobile-filter-btn {
+  display: none;
+  padding: 10px 20px;
+  background: var(--primary);
+  color: #fff;
+  border-radius: var(--radius-xs);
+  font-size: 13px;
+  font-weight: 600;
+  gap: 6px;
+  align-items: center;
+}
+.mobile-filter-btn svg { width:16px; height:16px; }
+
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  z-index: 300;
+}
+.sidebar-overlay.show { display:block; }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width:1024px) {
+  .main-layout { grid-template-columns:1fr; }
+  .sidebar {
+    position:fixed;
+    top:0; right:-320px;
+    width:300px; height:100vh;
+    background:var(--bg);
+    z-index:400;
+    padding:24px;
+    overflow-y:auto;
+    transition: right 0.35s ease;
+    box-shadow: var(--shadow-xl);
+  }
+  body[dir="ltr"] .sidebar { right:auto; left:-320px; transition: left 0.35s ease; }
+  .sidebar.open { right:0; }
+  body[dir="ltr"] .sidebar.open { left:0; }
+  .mobile-filter-btn { display:inline-flex; }
+  .hero-stats { display:none; }
+  .hero-text h1 { font-size:28px; }
+}
+@media (max-width:640px) {
+  .header-inner { padding:0 16px; gap:12px; }
+  .breadcrumb { display:none; }
+  .h-search { max-width:100%; }
+  .hero-inner { padding:0 16px; }
+  .main-layout { padding:20px 16px 60px; }
+  .products-grid { grid-template-columns:repeat(2,1fr); gap:12px; }
+  .p-card-img { height:160px; }
+  .p-card-body { padding:12px; }
+  .p-name { font-size:12.5px; }
+  .p-price { font-size:16px; }
+  .p-desc { display:none; }
+  .toolbar { gap:10px; }
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes slideUp {
+  from { opacity:0; transform:translateY(24px); }
+  to { opacity:1; transform:translateY(0); }
+}
+.p-card {
+  animation: slideUp 0.5s ease both;
+}
+.p-card:nth-child(1) { animation-delay:0.02s; }
+.p-card:nth-child(2) { animation-delay:0.06s; }
+.p-card:nth-child(3) { animation-delay:0.10s; }
+.p-card:nth-child(4) { animation-delay:0.14s; }
+.p-card:nth-child(5) { animation-delay:0.18s; }
+.p-card:nth-child(6) { animation-delay:0.22s; }
+.p-card:nth-child(7) { animation-delay:0.26s; }
+.p-card:nth-child(8) { animation-delay:0.30s; }
+.p-card:nth-child(9) { animation-delay:0.34s; }
+.p-card:nth-child(10) { animation-delay:0.38s; }
+.p-card:nth-child(11) { animation-delay:0.42s; }
+.p-card:nth-child(12) { animation-delay:0.46s; }
+
+/* close btn */
+.sidebar-close {
+  display:none;
+  position:absolute; top:16px; left:16px;
+  width:32px; height:32px;
+  border-radius:50%;
+  background:var(--border-light);
+  align-items:center; justify-content:center;
+  font-size:18px; color:var(--text);
+  transition:var(--transition);
+}
+body[dir="ltr"] .sidebar-close { left:auto; right:16px; }
+@media(max-width:1024px) { .sidebar-close { display:flex; } }
+.sidebar-close:hover { background:var(--danger-pale); color:var(--danger); }
+</style>
+</head>
+<body dir="rtl" id="app">
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-inner">
+    <a class="logo-link" href="pharmacy-website.html">
+      <div class="logo-mark">⚕</div>
+      <span class="logo-name" data-ar="فارمازون" data-en="PharmaZone">فارمازون</span>
+    </a>
+    <div class="breadcrumb">
+      <a href="pharmacy-website.html" data-ar="الرئيسية" data-en="Home">الرئيسية</a>
+      <span class="sep">/</span>
+      <span data-ar="الأدوية" data-en="Medicines">الأدوية</span>
+    </div>
+    <div class="h-search">
+      <input type="text" id="searchInput" data-ar-placeholder="ابحث عن اسم الدواء أو المادة الفعالة..." data-en-placeholder="Search by medicine name or active ingredient..." placeholder="ابحث عن اسم الدواء أو المادة الفعالة...">
+      <button class="h-search-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      </button>
+    </div>
+    <div class="h-actions">
+      <a href="pharmacy-my-account.html" class="h-act-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </a>
+      <a href="pharmacy-order-tracking.html" class="h-act-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><path d="M9 14l2 2 4-4"/></svg>
+      </a>
+      <button class="lang-btn" onclick="toggleLang()" data-ar="EN" data-en="عربي">EN</button>
+    </div>
+  </div>
+</header>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <h1 data-ar="💊 قسم الأدوية" data-en="💊 Medicines">💊 قسم الأدوية</h1>
+      <p data-ar="تصفح أكثر من 5,000 دواء أصلي ومعتمد — أدوية بدون روشتة وأدوية موصوفة بأسعار تنافسية وتوصيل سريع." data-en="Browse over 5,000 authentic & certified medicines — OTC and prescription drugs at competitive prices with fast delivery.">تصفح أكثر من 5,000 دواء أصلي ومعتمد — أدوية بدون روشتة وأدوية موصوفة بأسعار تنافسية وتوصيل سريع.</p>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <span class="num">5,200+</span>
+        <span class="label" data-ar="منتج" data-en="Products">منتج</span>
+      </div>
+      <div class="hero-stat">
+        <span class="num">120+</span>
+        <span class="label" data-ar="ماركة" data-en="Brands">ماركة</span>
+      </div>
+      <div class="hero-stat">
+        <span class="num">24/7</span>
+        <span class="label" data-ar="صيدلي متاح" data-en="Pharmacist">صيدلي متاح</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MAIN -->
+<main class="main-layout">
+
+  <!-- SIDEBAR OVERLAY -->
+  <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <button class="sidebar-close" onclick="closeSidebar()">✕</button>
+
+    <!-- Categories -->
+    <div class="filter-card">
+      <div class="filter-title">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h10M4 18h6"/></svg>
+        <span data-ar="الأقسام الفرعية" data-en="Sub-Categories">الأقسام الفرعية</span>
+      </div>
+      <ul class="cat-list" id="catList"></ul>
+    </div>
+
+    <!-- Price -->
+    <div class="filter-card">
+      <div class="filter-title">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        <span data-ar="السعر" data-en="Price">السعر</span>
+      </div>
+      <div class="price-range">
+        <div class="range-row">
+          <input class="range-input" type="number" id="priceMin" data-ar-placeholder="من" data-en-placeholder="Min" placeholder="من">
+          <input class="range-input" type="number" id="priceMax" data-ar-placeholder="إلى" data-en-placeholder="Max" placeholder="إلى">
+        </div>
+        <button class="filter-apply-btn" data-ar="تطبيق" data-en="Apply" onclick="applyFilters()">تطبيق</button>
+      </div>
+    </div>
+
+    <!-- Brands -->
+    <div class="filter-card">
+      <div class="filter-title">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+        <span data-ar="الماركة" data-en="Brand">الماركة</span>
+      </div>
+      <div class="brand-pills" id="brandPills"></div>
+    </div>
+
+    <!-- Rating -->
+    <div class="filter-card">
+      <div class="filter-title">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <span data-ar="التقييم" data-en="Rating">التقييم</span>
+      </div>
+      <div class="rating-option" onclick="filterByRating(4)"><span class="stars-f">★★★★☆</span> <span class="up" data-ar="وأكثر" data-en="& up">وأكثر</span></div>
+      <div class="rating-option" onclick="filterByRating(3)"><span class="stars-f">★★★☆☆</span> <span class="up" data-ar="وأكثر" data-en="& up">وأكثر</span></div>
+      <div class="rating-option" onclick="filterByRating(2)"><span class="stars-f">★★☆☆☆</span> <span class="up" data-ar="وأكثر" data-en="& up">وأكثر</span></div>
+    </div>
+
+    <!-- Promo -->
+    <div class="sidebar-promo">
+      <div class="promo-emoji">👨‍⚕️</div>
+      <h4 data-ar="محتاج استشارة؟" data-en="Need Advice?">محتاج استشارة؟</h4>
+      <p data-ar="تكلم مع صيدلي متخصص مجاناً على مدار الساعة" data-en="Talk to a licensed pharmacist 24/7 for free">تكلم مع صيدلي متخصص مجاناً على مدار الساعة</p>
+      <button class="sidebar-promo-btn" data-ar="💬 ابدأ محادثة" data-en="💬 Start Chat">💬 ابدأ محادثة</button>
+    </div>
+  </aside>
+
+  <!-- PRODUCTS -->
+  <section class="products-area">
+    <div class="toolbar">
+      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+        <button class="mobile-filter-btn" onclick="openSidebar()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h10M4 18h6"/></svg>
+          <span data-ar="الفلاتر" data-en="Filters">الفلاتر</span>
+        </button>
+        <span class="results-info">
+          <span data-ar="عرض" data-en="Showing">عرض</span>
+          <strong id="resultCount">12</strong>
+          <span data-ar="منتج" data-en="products">منتج</span>
+        </span>
+      </div>
+      <div class="toolbar-actions">
+        <select class="sort-select" id="sortSelect" onchange="sortProducts()">
+          <option value="popular" data-ar="الأكثر مبيعاً" data-en="Most Popular">الأكثر مبيعاً</option>
+          <option value="price-low" data-ar="السعر: من الأقل" data-en="Price: Low to High">السعر: من الأقل</option>
+          <option value="price-high" data-ar="السعر: من الأعلى" data-en="Price: High to Low">السعر: من الأعلى</option>
+          <option value="rating" data-ar="الأعلى تقييماً" data-en="Top Rated">الأعلى تقييماً</option>
+          <option value="newest" data-ar="الأحدث" data-en="Newest">الأحدث</option>
+        </select>
+        <div class="view-toggle">
+          <button class="view-btn active" onclick="setView('grid',this)" title="Grid">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+          </button>
+          <button class="view-btn" onclick="setView('list',this)" title="List">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="products-grid" id="productsGrid"></div>
+
+    <div class="pagination" id="pagination"></div>
+  </section>
+</main>
+
+<script>
+// ===== LANGUAGE =====
+let lang = 'ar';
+function toggleLang() {
+  lang = lang === 'ar' ? 'en' : 'ar';
+  document.getElementById('app').dir = lang === 'ar' ? 'rtl' : 'ltr';
+  document.getElementById('app').lang = lang;
+  document.querySelectorAll('[data-ar]').forEach(el => {
+    if(el.tagName==='INPUT') return;
+    if(el.tagName==='OPTION') { el.textContent = el.getAttribute('data-'+lang); return; }
+    el.innerHTML = el.getAttribute('data-'+lang);
+  });
+  document.querySelectorAll('[data-ar-placeholder]').forEach(el => {
+    el.placeholder = el.getAttribute(lang==='ar'?'data-ar-placeholder':'data-en-placeholder');
+  });
+  renderAll();
+}
+
+// ===== DATA =====
+const categories = [
+  { ar:'الكل', en:'All', count:52, id:'all' },
+  { ar:'مسكنات ومضادات التهاب', en:'Pain & Anti-inflammatory', count:12, id:'pain' },
+  { ar:'مضادات حيوية', en:'Antibiotics', count:8, id:'antibiotics' },
+  { ar:'أدوية البرد والإنفلونزا', en:'Cold & Flu', count:9, id:'cold' },
+  { ar:'أدوية الجهاز الهضمي', en:'Digestive Health', count:7, id:'digestive' },
+  { ar:'أدوية القلب والضغط', en:'Heart & Blood Pressure', count:6, id:'heart' },
+  { ar:'أدوية السكر', en:'Diabetes', count:5, id:'diabetes' },
+  { ar:'أدوية الحساسية', en:'Allergy', count:4, id:'allergy' },
+  { ar:'فيتامينات وحديد', en:'Vitamins & Iron', count:6, id:'vitamins' },
+];
+
+const brands = ['Pfizer','Novartis','GSK','Sanofi','Bayer','EVA Pharma','Amoun','EIPICO','Hikma','MUP'];
+
+const medicines = [
+  {
+    id:1, cat:'pain',
+    brand:'Pfizer',
+    name:{ ar:'بروفين 600 مج — 20 قرص مغلف', en:'Brufen 600mg — 20 Coated Tablets' },
+    desc:{ ar:'إيبوبروفين مسكن قوي ومضاد للالتهابات لتخفيف آلام العضلات والمفاصل والصداع', en:'Ibuprofen powerful painkiller & anti-inflammatory for muscle, joint pain and headaches' },
+    img:'https://m.media-amazon.com/images/I/61Y0oL+hROL._AC_UL640_FMwebp_QL65_.jpg',
+    price:42, oldPrice:null, rating:4.8, reviews:1243, stock:'in',
+    badges:['best'], popular:98
+  },
+  {
+    id:2, cat:'cold',
+    brand:'GSK',
+    name:{ ar:'كومتركس أقراص البرد والإنفلونزا — 20 قرص', en:'Comtrex Cold & Flu Tablets — 20 Tabs' },
+    desc:{ ar:'علاج فعال لأعراض البرد والإنفلونزا: الرشح، العطس، احتقان الأنف والصداع', en:'Effective relief for cold & flu symptoms: runny nose, sneezing, congestion and headaches' },
+    img:'https://images.unsplash.com/photo-1550572017-4fcdbb59cc32?w=500&h=500&fit=crop',
+    price:36, oldPrice:45, rating:4.6, reviews:876, stock:'in',
+    badges:['sale'], popular:95
+  },
+  {
+    id:3, cat:'antibiotics',
+    brand:'Pfizer',
+    name:{ ar:'أوجمنتين 1جم — 14 قرص', en:'Augmentin 1g — 14 Tablets' },
+    desc:{ ar:'أموكسيسيللين + كلافيولانيك أسيد — مضاد حيوي واسع المجال لعلاج العدوى البكتيرية', en:'Amoxicillin + Clavulanic Acid — broad-spectrum antibiotic for bacterial infections' },
+    img:'https://images.unsplash.com/photo-1584308666742-c3b0f40d1f90?w=500&h=500&fit=crop',
+    price:120, oldPrice:null, rating:4.9, reviews:2100, stock:'in',
+    badges:['rx','best'], popular:99
+  },
+  {
+    id:4, cat:'digestive',
+    brand:'Sanofi',
+    name:{ ar:'أنتينال 200 مج — 24 كبسولة', en:'Antinal 200mg — 24 Capsules' },
+    desc:{ ar:'نيفوروكسازيد مطهر معوي لعلاج الإسهال والنزلات المعوية الحادة', en:'Nifuroxazide intestinal antiseptic for acute diarrhea and gastroenteritis' },
+    img:'https://images.unsplash.com/photo-1471864190281-a93a3070b6de?w=500&h=500&fit=crop',
+    price:28, oldPrice:null, rating:4.7, reviews:1567, stock:'in',
+    badges:['best'], popular:96
+  },
+  {
+    id:5, cat:'pain',
+    brand:'Novartis',
+    name:{ ar:'فولتارين جل 50 جم — مسكن موضعي', en:'Voltaren Gel 50g — Topical Pain Relief' },
+    desc:{ ar:'ديكلوفيناك جل موضعي لتخفيف آلام العضلات والمفاصل والتواء الأربطة', en:'Diclofenac topical gel for muscle, joint and ligament pain relief' },
+    img:'https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=500&h=500&fit=crop',
+    price:65, oldPrice:78, rating:4.5, reviews:432, stock:'in',
+    badges:['sale'], popular:82
+  },
+  {
+    id:6, cat:'heart',
+    brand:'Novartis',
+    name:{ ar:'كونكور 5 مج — 30 قرص', en:'Concor 5mg — 30 Tablets' },
+    desc:{ ar:'بيسوبرولول لعلاج ارتفاع ضغط الدم وتنظيم ضربات القلب', en:'Bisoprolol for treating high blood pressure and regulating heart rate' },
+    img:'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=500&h=500&fit=crop',
+    price:95, oldPrice:null, rating:4.8, reviews:789, stock:'in',
+    badges:['rx'], popular:85
+  },
+  {
+    id:7, cat:'allergy',
+    brand:'Bayer',
+    name:{ ar:'كلاريتين 10 مج — 20 قرص', en:'Claritine 10mg — 20 Tablets' },
+    desc:{ ar:'لوراتادين مضاد للحساسية والهيستامين — لا يسبب النعاس', en:'Loratadine antihistamine for allergy relief — non-drowsy formula' },
+    img:'https://images.unsplash.com/photo-1550572017-4fcdbb59cc32?w=500&h=500&fit=crop&crop=center',
+    price:48, oldPrice:null, rating:4.6, reviews:654, stock:'in',
+    badges:[], popular:78
+  },
+  {
+    id:8, cat:'diabetes',
+    brand:'Novartis',
+    name:{ ar:'جلوكوفاج 1000 مج — 30 قرص', en:'Glucophage 1000mg — 30 Tablets' },
+    desc:{ ar:'ميتفورمين لعلاج مرض السكري من النوع الثاني — يساعد في التحكم بمستوى السكر', en:'Metformin for Type 2 diabetes management — helps control blood sugar levels' },
+    img:'https://images.unsplash.com/photo-1576602976047-174e57a47881?w=500&h=500&fit=crop',
+    price:35, oldPrice:null, rating:4.7, reviews:1890, stock:'in',
+    badges:['rx','best'], popular:92
+  },
+  {
+    id:9, cat:'vitamins',
+    brand:'Bayer',
+    name:{ ar:'سوبرافيت كبسولات فيتامينات — 30 كبسولة', en:'Supravit Multivitamin Capsules — 30 Caps' },
+    desc:{ ar:'مكمل غذائي شامل يحتوي على فيتامينات ومعادن أساسية لتعزيز المناعة والنشاط', en:'Comprehensive supplement with essential vitamins & minerals to boost immunity & energy' },
+    img:'https://images.unsplash.com/photo-1616671276441-2f2c277b8bf6?w=500&h=500&fit=crop',
+    price:85, oldPrice:110, rating:4.4, reviews:345, stock:'in',
+    badges:['sale'], popular:75
+  },
+  {
+    id:10, cat:'cold',
+    brand:'Sanofi',
+    name:{ ar:'فلوستات كبسولات البرد — 10 كبسولات', en:'Flustat Cold Capsules — 10 Caps' },
+    desc:{ ar:'علاج سريع لأعراض البرد والأنفلونزا والتهاب الحلق وارتفاع الحرارة', en:'Fast relief for cold, flu, sore throat and fever symptoms' },
+    img:'https://images.unsplash.com/photo-1584308666742-c3b0f40d1f90?w=500&h=500&fit=crop&crop=entropy',
+    price:22, oldPrice:null, rating:4.3, reviews:567, stock:'low',
+    badges:[], popular:70
+  },
+  {
+    id:11, cat:'digestive',
+    brand:'GSK',
+    name:{ ar:'جافيسكون أدفانس شراب 300 مل', en:'Gaviscon Advance Liquid 300ml' },
+    desc:{ ar:'علاج فوري لحموضة المعدة والارتجاع — يكوّن طبقة حماية على جدار المعدة', en:'Instant relief for heartburn & acid reflux — forms a protective barrier on stomach wall' },
+    img:'https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?w=500&h=500&fit=crop',
+    price:98, oldPrice:120, rating:4.7, reviews:1023, stock:'in',
+    badges:['sale','best'], popular:88
+  },
+  {
+    id:12, cat:'pain',
+    brand:'EVA Pharma',
+    name:{ ar:'بنادول إكسترا — 24 قرص', en:'Panadol Extra — 24 Tablets' },
+    desc:{ ar:'باراسيتامول + كافيين — مسكن سريع المفعول للصداع وآلام الأسنان والجسم', en:'Paracetamol + Caffeine — fast-acting pain relief for headaches, dental & body pain' },
+    img:'https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=500&h=500&fit=crop',
+    price:30, oldPrice:null, rating:4.5, reviews:2340, stock:'in',
+    badges:['best'], popular:94
+  },
+];
+
+// ===== STATE =====
+let activeCategory = 'all';
+let activeBrand = null;
+let currentPage = 1;
+const perPage = 12;
+let viewMode = 'grid';
+
+// ===== RENDER =====
+function renderAll() {
+  renderCategories();
+  renderBrands();
+  renderProducts();
+}
+
+function renderCategories() {
+  const list = document.getElementById('catList');
+  list.innerHTML = categories.map(c => `
+    <li class="cat-item ${activeCategory===c.id?'active':''}" onclick="selectCategory('${c.id}')">
+      <span>${c[lang]}</span>
+      <span class="count">${c.count}</span>
+    </li>
+  `).join('');
+}
+
+function renderBrands() {
+  document.getElementById('brandPills').innerHTML = brands.map(b => `
+    <span class="brand-pill ${activeBrand===b?'active':''}" onclick="selectBrand('${b}')">${b}</span>
+  `).join('');
+}
+
+function selectCategory(id) {
+  activeCategory = id;
+  currentPage = 1;
+  renderCategories();
+  renderProducts();
+}
+function selectBrand(b) {
+  activeBrand = activeBrand===b ? null : b;
+  currentPage = 1;
+  renderBrands();
+  renderProducts();
+}
+function filterByRating(min) { renderProducts(min); }
+function applyFilters() { renderProducts(); }
+
+function getFiltered(minRating) {
+  let list = [...medicines];
+  if(activeCategory !== 'all') list = list.filter(m => m.cat === activeCategory);
+  if(activeBrand) list = list.filter(m => m.brand === activeBrand);
+  const pMin = parseFloat(document.getElementById('priceMin').value);
+  const pMax = parseFloat(document.getElementById('priceMax').value);
+  if(!isNaN(pMin)) list = list.filter(m => m.price >= pMin);
+  if(!isNaN(pMax)) list = list.filter(m => m.price <= pMax);
+  if(minRating) list = list.filter(m => m.rating >= minRating);
+
+  // Search
+  const q = document.getElementById('searchInput').value.trim().toLowerCase();
+  if(q) list = list.filter(m =>
+    m.name.ar.includes(q) || m.name.en.toLowerCase().includes(q) ||
+    m.brand.toLowerCase().includes(q) || m.desc.ar.includes(q) || m.desc.en.toLowerCase().includes(q)
+  );
+
+  // Sort
+  const sort = document.getElementById('sortSelect').value;
+  if(sort==='price-low') list.sort((a,b) => a.price - b.price);
+  else if(sort==='price-high') list.sort((a,b) => b.price - a.price);
+  else if(sort==='rating') list.sort((a,b) => b.rating - a.rating);
+  else if(sort==='newest') list.sort((a,b) => b.id - a.id);
+  else list.sort((a,b) => b.popular - a.popular);
+
+  return list;
+}
+
+function renderProducts(minRating) {
+  const filtered = getFiltered(minRating);
+  document.getElementById('resultCount').textContent = filtered.length;
+
+  const grid = document.getElementById('productsGrid');
+  const cur = lang === 'ar' ? 'ج.م' : 'EGP';
+  const addText = lang==='ar' ? 'أضف للسلة' : 'Add to Cart';
+  const badgeLabels = {
+    sale:{ ar:'خصم', en:'SALE' },
+    new:{ ar:'جديد', en:'NEW' },
+    best:{ ar:'الأكثر مبيعاً', en:'BESTSELLER' },
+    rx:{ ar:'بروشتة', en:'Rx ONLY' },
+  };
+  const stockLabels = {
+    in:{ ar:'متوفر', en:'In Stock', cls:'in' },
+    low:{ ar:'كمية محدودة', en:'Low Stock', cls:'low' },
+    out:{ ar:'نفذ', en:'Out of Stock', cls:'out' },
+  };
+
+  grid.innerHTML = filtered.map((m,i) => {
+    const discount = m.oldPrice ? Math.round((1 - m.price/m.oldPrice)*100) : null;
+    const starsHtml = '★'.repeat(Math.floor(m.rating)) + (m.rating%1>=0.5?'½':'');
+    return `
+    <div class="p-card" style="animation-delay:${i*0.04}s">
+      <div class="p-badges">
+        ${m.badges.map(b => `<span class="p-badge-item p-b-${b}">${badgeLabels[b][lang]}</span>`).join('')}
+      </div>
+      <button class="wish-btn" onclick="toggleWish(this)" title="${lang==='ar'?'أضف للمفضلة':'Add to Wishlist'}">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      </button>
+      <div class="p-card-img">
+        <img src="${m.img}" alt="${m.name[lang]}" loading="lazy">
+        <div class="quick-actions">
+          <button class="quick-act" title="${lang==='ar'?'عرض سريع':'Quick View'}">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          </button>
+          <button class="quick-act" title="${lang==='ar'?'قارن':'Compare'}">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 3h5v5M4 20L21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="p-card-body">
+        <div class="p-brand">${m.brand}</div>
+        <div class="p-name">${m.name[lang]}</div>
+        <div class="p-desc">${m.desc[lang]}</div>
+        <div class="p-meta">
+          <div class="p-rating">
+            <span class="star">★</span>
+            <span class="val">${m.rating}</span>
+            <span class="cnt">(${m.reviews.toLocaleString()})</span>
+          </div>
+          <span class="p-stock ${stockLabels[m.stock].cls}">${stockLabels[m.stock][lang]}</span>
+        </div>
+        <div class="p-pricing">
+          <span class="p-price">${m.price} ${cur}</span>
+          ${m.oldPrice ? `<span class="p-price-old">${m.oldPrice} ${cur}</span>` : ''}
+          ${discount ? `<span class="p-discount">-${discount}%</span>` : ''}
+        </div>
+        <button class="p-add-btn" onclick="addToCart(this)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+          ${addText}
+        </button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function sortProducts() { renderProducts(); }
+
+function setView(mode, btn) {
+  viewMode = mode;
+  const grid = document.getElementById('productsGrid');
+  grid.classList.toggle('list-view', mode==='list');
+  document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+function toggleWish(btn) {
+  btn.classList.toggle('liked');
+  const svg = btn.querySelector('svg');
+  if(btn.classList.contains('liked')) {
+    svg.setAttribute('fill','#E53E3E');
+  } else {
+    svg.setAttribute('fill','none');
+  }
+}
+
+function addToCart(btn) {
+  const orig = btn.innerHTML;
+  btn.classList.add('added');
+  btn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> ${lang==='ar'?'تمت الإضافة!':'Added!'}`;
+  setTimeout(() => {
+    btn.classList.remove('added');
+    btn.innerHTML = orig;
+  }, 1800);
+}
+
+function openSidebar() {
+  document.getElementById('sidebar').classList.add('open');
+  document.getElementById('sidebarOverlay').classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+function closeSidebar() {
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('sidebarOverlay').classList.remove('show');
+  document.body.style.overflow = '';
+}
+
+// Search on type
+document.getElementById('searchInput').addEventListener('input', () => { renderProducts(); });
+
+// Init
+renderAll();
+</script>
+</body>
+</html>

@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تتبع طلبك | فارمازون — Track Your Order</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Outfit:wght@300;400;500;600;700&family=Noto+Kufi+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary: #0B7A5B;
+  --primary-hover: #096348;
+  --primary-light: #12B886;
+  --primary-pale: #E6F9F1;
+  --primary-ghost: #F0FDF7;
+  --accent: #D4A843;
+  --accent-light: #FDF3D7;
+  --danger: #DC3545;
+  --danger-pale: #FDE8EA;
+  --warning: #F59E0B;
+  --warning-pale: #FEF3C7;
+  --info: #3B82F6;
+  --info-pale: #DBEAFE;
+  --bg: #F4F7F6;
+  --bg-card: #FFFFFF;
+  --text: #1B2E28;
+  --text-sec: #4A6258;
+  --text-muted: #8DA49A;
+  --border: #DFE8E4;
+  --border-light: #EEF2F0;
+  --shadow-sm: 0 1px 3px rgba(11,122,91,0.06);
+  --shadow: 0 4px 20px rgba(11,122,91,0.08);
+  --shadow-lg: 0 12px 40px rgba(11,122,91,0.12);
+  --radius: 16px;
+  --radius-sm: 10px;
+  --radius-xs: 6px;
+  --tr: 0.25s cubic-bezier(0.4,0,0.2,1);
+  --header-h: 68px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Outfit','Noto Kufi Arabic',sans-serif;background:var(--bg);color:var(--text);line-height:1.65;min-height:100vh}
+body[dir="rtl"]{font-family:'Noto Kufi Arabic','Outfit',sans-serif}
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--primary-light);border-radius:5px}
+a{text-decoration:none;color:inherit}
+button{cursor:pointer;font-family:inherit;border:none}
+img{display:block;max-width:100%}
+
+/* HEADER */
+.header{position:sticky;top:0;z-index:200;background:rgba(255,255,255,0.92);backdrop-filter:blur(24px);border-bottom:1px solid var(--border-light);height:var(--header-h)}
+.header-inner{max-width:1200px;margin:0 auto;padding:0 32px;height:100%;display:flex;align-items:center;gap:20px}
+.logo-link{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.logo-mark{width:40px;height:40px;background:linear-gradient(135deg,var(--primary),var(--primary-light));border-radius:11px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:20px;box-shadow:0 4px 14px rgba(11,122,91,0.3)}
+.logo-name{font-family:'Playfair Display','Noto Kufi Arabic',serif;font-size:19px;font-weight:700;color:var(--primary-hover)}
+.header-nav{display:flex;align-items:center;gap:6px;margin-inline-start:auto}
+.nav-link{padding:8px 16px;font-size:13px;font-weight:500;color:var(--text-sec);border-radius:50px;transition:var(--tr)}
+.nav-link:hover{background:var(--primary-pale);color:var(--primary)}
+.lang-btn{padding:7px 16px;background:var(--primary-pale);color:var(--primary);border-radius:50px;font-size:12px;font-weight:600;transition:var(--tr)}
+.lang-btn:hover{background:var(--primary);color:#fff}
+
+/* HERO */
+.page-hero{background:linear-gradient(135deg,#084D38 0%,var(--primary) 50%,var(--primary-light) 100%);padding:44px 0 56px;position:relative;overflow:hidden}
+.page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 20% 80%,rgba(212,168,67,0.1) 0%,transparent 50%),radial-gradient(ellipse at 80% 20%,rgba(255,255,255,0.06) 0%,transparent 50%)}
+.page-hero::after{content:'';position:absolute;bottom:-2px;left:0;right:0;height:36px;background:var(--bg);border-radius:50% 50% 0 0}
+.hero-inner{max-width:1200px;margin:0 auto;padding:0 32px;position:relative;z-index:1;text-align:center}
+.hero-inner h1{font-family:'Playfair Display','Noto Kufi Arabic',serif;font-size:32px;color:#fff;margin-bottom:8px}
+.hero-inner p{color:rgba(255,255,255,0.7);font-size:14px}
+
+/* LOOKUP */
+.lookup-card{max-width:560px;margin:-32px auto 0;position:relative;z-index:10;background:var(--bg-card);border-radius:var(--radius);padding:28px 32px;box-shadow:var(--shadow-lg);border:1px solid var(--border-light)}
+.lookup-title{font-size:15px;font-weight:600;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.lookup-title svg{width:18px;height:18px;color:var(--primary)}
+.lookup-row{display:flex;gap:10px}
+.lookup-input{flex:1;padding:13px 18px;border:2px solid var(--border);border-radius:var(--radius-sm);font-size:14px;font-family:inherit;color:var(--text);transition:var(--tr);background:var(--primary-ghost)}
+.lookup-input:focus{outline:none;border-color:var(--primary-light);background:#fff;box-shadow:0 0 0 4px rgba(18,184,134,0.1)}
+.lookup-input::placeholder{color:var(--text-muted)}
+.lookup-btn{padding:13px 28px;background:var(--primary);color:#fff;border-radius:var(--radius-sm);font-size:14px;font-weight:600;transition:var(--tr);white-space:nowrap}
+.lookup-btn:hover{background:var(--primary-hover)}
+
+/* MAIN */
+.main{max-width:1200px;margin:0 auto;padding:36px 32px 80px}
+
+/* ORDER STATUS BANNER */
+.status-banner{border-radius:var(--radius);padding:24px 28px;margin-bottom:28px;display:flex;align-items:center;gap:18px;animation:fadeIn 0.5s ease}
+.status-banner.processing{background:linear-gradient(135deg,#EBF5FF,#DBEAFE);border:1px solid #93C5FD}
+.status-banner.shipped{background:linear-gradient(135deg,var(--warning-pale),#FDE68A);border:1px solid #FCD34D}
+.status-banner.delivered{background:linear-gradient(135deg,var(--primary-pale),#A7F3D0);border:1px solid #6EE7B7}
+.status-banner.cancelled{background:linear-gradient(135deg,var(--danger-pale),#FECACA);border:1px solid #FCA5A5}
+.status-icon{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;flex-shrink:0}
+.processing .status-icon{background:rgba(59,130,246,0.15)}
+.shipped .status-icon{background:rgba(245,158,11,0.15)}
+.delivered .status-icon{background:rgba(11,122,91,0.15)}
+.status-text h3{font-size:17px;font-weight:700;margin-bottom:2px}
+.status-text p{font-size:13px;color:var(--text-sec)}
+
+/* GRID LAYOUT */
+.order-grid{display:grid;grid-template-columns:1fr 380px;gap:24px}
+
+/* TIMELINE CARD */
+.card{background:var(--bg-card);border:1px solid var(--border-light);border-radius:var(--radius);box-shadow:var(--shadow-sm);overflow:hidden}
+.card-header{padding:20px 24px 16px;border-bottom:1px solid var(--border-light);display:flex;align-items:center;justify-content:space-between;gap:12px}
+.card-title{font-size:15px;font-weight:700;display:flex;align-items:center;gap:8px}
+.card-title svg{width:18px;height:18px;color:var(--primary)}
+.card-body{padding:24px}
+
+/* TIMELINE */
+.timeline{position:relative;padding-inline-start:36px}
+.timeline::before{content:'';position:absolute;top:8px;bottom:8px;width:3px;background:var(--border);border-radius:2px}
+body[dir="rtl"] .timeline::before{right:14px}
+body[dir="ltr"] .timeline::before{left:14px}
+.tl-item{position:relative;padding-bottom:28px}
+.tl-item:last-child{padding-bottom:0}
+.tl-dot{position:absolute;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;top:0;z-index:2}
+body[dir="rtl"] .tl-dot{right:-36px}
+body[dir="ltr"] .tl-dot{left:-36px}
+.tl-dot.done{background:var(--primary);color:#fff;box-shadow:0 0 0 4px var(--primary-pale)}
+.tl-dot.active{background:var(--warning);color:#fff;animation:pulseRing 2s infinite;box-shadow:0 0 0 4px var(--warning-pale)}
+.tl-dot.pending{background:var(--border);color:var(--text-muted)}
+.tl-content h4{font-size:14px;font-weight:600;margin-bottom:2px}
+.tl-content p{font-size:12px;color:var(--text-muted)}
+.tl-content .tl-time{font-size:11px;color:var(--primary-light);font-weight:600;margin-top:4px;display:flex;align-items:center;gap:4px}
+@keyframes pulseRing{0%,100%{box-shadow:0 0 0 4px var(--warning-pale)}50%{box-shadow:0 0 0 10px rgba(245,158,11,0)}}
+
+/* ORDER ITEMS */
+.order-item{display:flex;gap:16px;padding:16px 0;border-bottom:1px solid var(--border-light);align-items:center}
+.order-item:last-child{border-bottom:none}
+.item-img{width:72px;height:72px;border-radius:var(--radius-sm);overflow:hidden;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.item-img svg{width:100%;height:100%}
+.item-info{flex:1;min-width:0}
+.item-name{font-size:13.5px;font-weight:600;margin-bottom:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.item-brand{font-size:11px;color:var(--primary-light);font-weight:600;text-transform:uppercase;letter-spacing:0.8px}
+.item-meta{font-size:12px;color:var(--text-muted);margin-top:3px}
+.item-price{font-size:15px;font-weight:700;color:var(--primary-hover);white-space:nowrap}
+
+/* SUMMARY */
+.summary-row{display:flex;justify-content:space-between;padding:10px 0;font-size:13.5px;color:var(--text-sec)}
+.summary-row.total{border-top:2px solid var(--border);margin-top:8px;padding-top:14px;font-size:16px;font-weight:700;color:var(--text)}
+.summary-row .label{display:flex;align-items:center;gap:6px}
+.discount-tag{color:var(--danger);font-weight:600}
+
+/* DELIVERY INFO */
+.delivery-box{display:flex;gap:14px;padding:16px;background:var(--primary-ghost);border-radius:var(--radius-sm);margin-bottom:12px}
+.delivery-box:last-child{margin-bottom:0}
+.del-icon{width:40px;height:40px;border-radius:10px;background:var(--primary-pale);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.del-info h5{font-size:13px;font-weight:600;margin-bottom:2px}
+.del-info p{font-size:12px;color:var(--text-muted);line-height:1.5}
+
+/* ACTION BUTTONS */
+.actions-row{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+.act-btn{padding:11px 22px;border-radius:var(--radius-sm);font-size:13px;font-weight:600;transition:var(--tr);display:flex;align-items:center;gap:7px}
+.act-btn svg{width:16px;height:16px}
+.act-primary{background:var(--primary);color:#fff}
+.act-primary:hover{background:var(--primary-hover)}
+.act-outline{background:transparent;border:1.5px solid var(--border);color:var(--text-sec)}
+.act-outline:hover{border-color:var(--primary);color:var(--primary);background:var(--primary-pale)}
+.act-danger{background:transparent;border:1.5px solid var(--danger-pale);color:var(--danger)}
+.act-danger:hover{background:var(--danger-pale)}
+
+/* HELP CARD */
+.help-card{background:linear-gradient(135deg,var(--primary),var(--primary-light));border-radius:var(--radius);padding:24px;text-align:center;color:#fff;margin-top:24px;position:relative;overflow:hidden}
+.help-card::before{content:'';position:absolute;top:-30px;right:-30px;width:100px;height:100px;background:rgba(255,255,255,0.08);border-radius:50%}
+.help-card .emoji{font-size:36px;margin-bottom:10px}
+.help-card h4{font-size:15px;font-weight:700;margin-bottom:6px}
+.help-card p{font-size:12px;opacity:0.8;margin-bottom:14px;line-height:1.6}
+.help-card-btn{padding:10px 24px;background:#fff;color:var(--primary);border-radius:50px;font-size:12px;font-weight:700;transition:var(--tr);display:inline-flex;align-items:center;gap:6px}
+.help-card-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,0.2)}
+
+/* RATING MODAL */
+.rating-section{text-align:center;padding:8px 0}
+.rating-stars{display:flex;justify-content:center;gap:6px;margin:12px 0}
+.r-star{font-size:32px;cursor:pointer;color:var(--border);transition:var(--tr)}
+.r-star.lit{color:#F6AD55}
+.r-star:hover{transform:scale(1.2)}
+.rating-label{font-size:13px;color:var(--text-muted);min-height:20px}
+.rating-textarea{width:100%;padding:12px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-family:inherit;font-size:13px;resize:vertical;min-height:70px;margin-top:10px;transition:var(--tr);color:var(--text)}
+.rating-textarea:focus{outline:none;border-color:var(--primary-light)}
+.rating-submit{margin-top:12px;padding:11px 28px;background:var(--primary);color:#fff;border-radius:var(--radius-sm);font-size:13px;font-weight:600;transition:var(--tr)}
+.rating-submit:hover{background:var(--primary-hover)}
+
+/* ANIMATIONS */
+@keyframes fadeIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.fade-in{animation:fadeIn 0.5s ease both}
+.fade-in-1{animation-delay:0.1s}
+.fade-in-2{animation-delay:0.2s}
+.fade-in-3{animation-delay:0.3s}
+.fade-in-4{animation-delay:0.4s}
+
+/* PRINT */
+.print-btn{font-size:12px;color:var(--text-muted);display:flex;align-items:center;gap:4px;transition:var(--tr);background:transparent;padding:4px 8px;border-radius:4px}
+.print-btn:hover{color:var(--primary);background:var(--primary-pale)}
+.print-btn svg{width:14px;height:14px}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .order-grid{grid-template-columns:1fr}
+  .header-inner{padding:0 16px}
+  .main{padding:24px 16px 60px}
+  .lookup-row{flex-direction:column}
+}
+@media(max-width:500px){
+  .hero-inner h1{font-size:24px}
+  .status-banner{flex-direction:column;text-align:center;gap:10px}
+  .item-img{width:56px;height:56px}
+  .actions-row{flex-direction:column}
+  .act-btn{justify-content:center}
+}
+
+@media print{
+  .header,.page-hero,.lookup-card,.help-card,.actions-row,.print-btn,.header-nav{display:none!important}
+  .main{padding:0!important}
+  .order-grid{grid-template-columns:1fr!important}
+  .card{box-shadow:none!important;border:1px solid #ddd!important}
+}
+</style>
+</head>
+<body dir="rtl" id="app">
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-inner">
+    <a class="logo-link" href="pharmacy-website.html">
+      <div class="logo-mark">⚕</div>
+      <span class="logo-name" data-ar="فارمازون" data-en="PharmaZone">فارمازون</span>
+    </a>
+    <nav class="header-nav">
+      <a class="nav-link" href="pharmacy-website.html" data-ar="الرئيسية" data-en="Home">الرئيسية</a>
+      <a class="nav-link" href="pharmacy-medicines-page.html" data-ar="الأدوية" data-en="Medicines">الأدوية</a>
+      <a class="nav-link" href="pharmacy-my-account.html" data-ar="حسابي" data-en="Account">حسابي</a>
+      <button class="lang-btn" onclick="toggleLang()" data-ar="EN" data-en="عربي">EN</button>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="page-hero">
+  <div class="hero-inner">
+    <h1 data-ar="📦 تتبع طلبك" data-en="📦 Track Your Order">📦 تتبع طلبك</h1>
+    <p data-ar="تابع حالة طلبك لحظة بلحظة — من التأكيد حتى التوصيل" data-en="Follow your order status in real-time — from confirmation to delivery">تابع حالة طلبك لحظة بلحظة — من التأكيد حتى التوصيل</p>
+  </div>
+</section>
+
+<!-- LOOKUP -->
+<div class="lookup-card fade-in">
+  <div class="lookup-title">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <span data-ar="ابحث عن طلبك" data-en="Find Your Order">ابحث عن طلبك</span>
+  </div>
+  <div class="lookup-row">
+    <input class="lookup-input" type="text" id="orderInput" value="PZ-2026-78432" data-ar-placeholder="أدخل رقم الطلب مثل PZ-2026-78432" data-en-placeholder="Enter order number e.g. PZ-2026-78432" placeholder="أدخل رقم الطلب مثل PZ-2026-78432">
+    <button class="lookup-btn" onclick="trackOrder()" data-ar="🔍 تتبع" data-en="🔍 Track">🔍 تتبع</button>
+  </div>
+</div>
+
+<!-- MAIN -->
+<main class="main" id="orderContent">
+
+  <!-- STATUS BANNER -->
+  <div class="status-banner shipped fade-in fade-in-1" id="statusBanner">
+    <div class="status-icon" id="statusIcon">🚚</div>
+    <div class="status-text">
+      <h3 id="statusTitle" data-ar="طلبك في الطريق إليك!" data-en="Your order is on its way!">طلبك في الطريق إليك!</h3>
+      <p id="statusDesc" data-ar="المندوب أحمد في الطريق — الوصول المتوقع خلال 25 دقيقة" data-en="Driver Ahmed is on the way — estimated arrival in 25 minutes">المندوب أحمد في الطريق — الوصول المتوقع خلال 25 دقيقة</p>
+    </div>
+  </div>
+
+  <!-- GRID -->
+  <div class="order-grid">
+    <!-- RIGHT COLUMN -->
+    <div>
+      <!-- TIMELINE -->
+      <div class="card fade-in fade-in-2">
+        <div class="card-header">
+          <div class="card-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span data-ar="مراحل الطلب" data-en="Order Timeline">مراحل الطلب</span>
+          </div>
+          <span style="font-size:12px;color:var(--text-muted)">#PZ-2026-78432</span>
+        </div>
+        <div class="card-body">
+          <div class="timeline" id="timeline"></div>
+        </div>
+      </div>
+
+      <!-- ORDER ITEMS -->
+      <div class="card fade-in fade-in-3" style="margin-top:24px">
+        <div class="card-header">
+          <div class="card-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+            <span data-ar="محتويات الطلب" data-en="Order Items">محتويات الطلب</span>
+          </div>
+          <span style="font-size:12px;color:var(--text-muted)" data-ar="4 منتجات" data-en="4 items">4 منتجات</span>
+        </div>
+        <div class="card-body" style="padding:8px 24px" id="orderItems"></div>
+      </div>
+
+      <!-- RATING -->
+      <div class="card fade-in fade-in-4" style="margin-top:24px" id="ratingCard">
+        <div class="card-header">
+          <div class="card-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <span data-ar="قيّم تجربتك" data-en="Rate Your Experience">قيّم تجربتك</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="rating-section">
+            <p style="font-size:13px;color:var(--text-sec);margin-bottom:4px" data-ar="كيف كانت تجربتك مع هذا الطلب؟" data-en="How was your experience with this order?">كيف كانت تجربتك مع هذا الطلب؟</p>
+            <div class="rating-stars" id="ratingStars">
+              <span class="r-star" data-v="1" onclick="rate(1)">★</span>
+              <span class="r-star" data-v="2" onclick="rate(2)">★</span>
+              <span class="r-star" data-v="3" onclick="rate(3)">★</span>
+              <span class="r-star" data-v="4" onclick="rate(4)">★</span>
+              <span class="r-star" data-v="5" onclick="rate(5)">★</span>
+            </div>
+            <div class="rating-label" id="ratingLabel"></div>
+            <textarea class="rating-textarea" id="ratingNote" data-ar-placeholder="اكتب ملاحظاتك هنا (اختياري)..." data-en-placeholder="Write your feedback here (optional)..." placeholder="اكتب ملاحظاتك هنا (اختياري)..."></textarea>
+            <button class="rating-submit" onclick="submitRating()" data-ar="إرسال التقييم" data-en="Submit Review">إرسال التقييم</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LEFT COLUMN (SIDEBAR) -->
+    <div>
+      <!-- ORDER SUMMARY -->
+      <div class="card fade-in fade-in-2">
+        <div class="card-header">
+          <div class="card-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+            <span data-ar="ملخص الطلب" data-en="Order Summary">ملخص الطلب</span>
+          </div>
+          <button class="print-btn" onclick="window.print()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+            <span data-ar="طباعة" data-en="Print">طباعة</span>
+          </button>
+        </div>
+        <div class="card-body" id="orderSummary"></div>
+      </div>
+
+      <!-- DELIVERY INFO -->
+      <div class="card fade-in fade-in-3" style="margin-top:24px">
+        <div class="card-header">
+          <div class="card-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span data-ar="بيانات التوصيل" data-en="Delivery Info">بيانات التوصيل</span>
+          </div>
+        </div>
+        <div class="card-body" id="deliveryInfo"></div>
+      </div>
+
+      <!-- PAYMENT -->
+      <div class="card fade-in fade-in-4" style="margin-top:24px">
+        <div class="card-header">
+          <div class="card-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+            <span data-ar="طريقة الدفع" data-en="Payment Method">طريقة الدفع</span>
+          </div>
+        </div>
+        <div class="card-body" id="paymentInfo"></div>
+      </div>
+
+      <!-- ACTIONS -->
+      <div class="actions-row fade-in fade-in-4" id="actionsRow"></div>
+
+      <!-- HELP -->
+      <div class="help-card fade-in fade-in-4">
+        <div class="emoji">💬</div>
+        <h4 data-ar="محتاج مساعدة؟" data-en="Need Help?">محتاج مساعدة؟</h4>
+        <p data-ar="فريق خدمة العملاء متاح 24/7 لمساعدتك" data-en="Our support team is available 24/7 to help you">فريق خدمة العملاء متاح 24/7 لمساعدتك</p>
+        <button class="help-card-btn" data-ar="📞 اتصل بنا 19888" data-en="📞 Call Us 19888">📞 اتصل بنا 19888</button>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script>
+let lang = 'ar';
+
+function toggleLang(){
+  lang = lang==='ar'?'en':'ar';
+  document.getElementById('app').dir = lang==='ar'?'rtl':'ltr';
+  document.getElementById('app').lang = lang;
+  document.querySelectorAll('[data-ar]').forEach(el=>{
+    if(el.tagName==='INPUT'||el.tagName==='TEXTAREA') return;
+    if(el.tagName==='OPTION'){el.textContent=el.getAttribute('data-'+lang);return}
+    el.innerHTML=el.getAttribute('data-'+lang);
+  });
+  document.querySelectorAll('[data-ar-placeholder]').forEach(el=>{
+    el.placeholder=el.getAttribute(lang==='ar'?'data-ar-placeholder':'data-en-placeholder');
+  });
+  renderAll();
+}
+
+// Medicine box SVG generator
+function medBox(name,brand,c1,c2,dose,type){
+  const icons={tab:'💊',cap:'💊',gel:'🧴',syrup:'🍶'};
+  const icon=icons[type]||'💊';
+  return `data:image/svg+xml,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72"><defs><linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="${c1}"/><stop offset="100%" stop-color="${c2}"/></linearGradient></defs><rect width="72" height="72" fill="#F2F7F5" rx="10"/><rect x="8" y="6" width="56" height="60" rx="8" fill="url(#g)"/><rect x="8" y="6" width="56" height="16" rx="8" fill="rgba(255,255,255,0.15)"/><text x="36" y="17" text-anchor="middle" fill="white" font-family="Arial" font-size="7" font-weight="bold">${brand}</text><text x="36" y="38" text-anchor="middle" fill="white" font-family="Arial" font-size="10" font-weight="bold">${name}</text><text x="36" y="50" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-family="Arial" font-size="7">${dose}</text></svg>`)}`;
+}
+
+// ORDER DATA
+const order = {
+  id: 'PZ-2026-78432',
+  date: '2026-04-14',
+  status: 'shipped',
+  items: [
+    { name:{ar:'بروفين 600 مج — 30 قرص',en:'Brufen 600mg — 30 Tablets'}, brand:'Abbott', qty:2, price:99, img:medBox('Brufen','Abbott','#1565C0','#1E88E5','600mg','tab') },
+    { name:{ar:'أنتينال 200 مج — 24 كبسولة',en:'Antinal 200mg — 24 Capsules'}, brand:'Amoun', qty:1, price:28, img:medBox('Antinal','Amoun','#F57F17','#FBC02D','200mg','cap') },
+    { name:{ar:'بنادول إكسترا — 24 قرص',en:'Panadol Extra — 24 Tablets'}, brand:'GSK', qty:1, price:62, img:medBox('Panadol','GSK','#C62828','#D32F2F','Extra','tab') },
+    { name:{ar:'جافيسكون أدفانس — 300 مل',en:'Gaviscon Advance — 300ml'}, brand:'Reckitt', qty:1, price:98, img:medBox('Gaviscon','Reckitt','#558B2F','#7CB342','Advance','syrup') },
+  ],
+  subtotal: 386,
+  discount: 25,
+  delivery: 0,
+  total: 361,
+  address: { ar:'شارع 15 مايو، المعادي، القاهرة — شقة 8 الدور 3', en:'15 May St, Maadi, Cairo — Apt 8, Floor 3' },
+  phone: '010-1234-5678',
+  payment: { ar:'الدفع عند الاستلام (كاش)', en:'Cash on Delivery (COD)' },
+  driver: { ar:'أحمد محمود', en:'Ahmed Mahmoud' },
+  eta: '25',
+};
+
+const timelineData = [
+  { title:{ar:'تم تأكيد الطلب',en:'Order Confirmed'}, desc:{ar:'تم استلام طلبك وجاري التجهيز',en:'Your order has been received and is being prepared'}, time:'14 أبريل 2026 — 10:30 ص', status:'done', icon:'✓' },
+  { title:{ar:'جاري تجهيز الطلب',en:'Order Processing'}, desc:{ar:'الصيدلي يراجع الأدوية ويجهز طلبك',en:'Pharmacist is reviewing and packing your order'}, time:'14 أبريل 2026 — 10:45 ص', status:'done', icon:'✓' },
+  { title:{ar:'تم التغليف والشحن',en:'Packed & Shipped'}, desc:{ar:'طلبك جاهز وتم تسليمه للمندوب',en:'Your order is packed and handed to the driver'}, time:'14 أبريل 2026 — 11:10 ص', status:'done', icon:'✓' },
+  { title:{ar:'في الطريق إليك',en:'Out for Delivery'}, desc:{ar:'المندوب أحمد في الطريق — الوصول خلال 25 دقيقة',en:'Driver Ahmed is on the way — arriving in 25 min'}, time:'14 أبريل 2026 — 11:20 ص', status:'active', icon:'🚚' },
+  { title:{ar:'تم التسليم',en:'Delivered'}, desc:{ar:'في انتظار التسليم',en:'Awaiting delivery'}, time:'—', status:'pending', icon:'📦' },
+];
+
+function renderAll(){
+  renderTimeline();
+  renderItems();
+  renderSummary();
+  renderDelivery();
+  renderPayment();
+  renderActions();
+}
+
+function renderTimeline(){
+  document.getElementById('timeline').innerHTML = timelineData.map(t=>`
+    <div class="tl-item">
+      <div class="tl-dot ${t.status}">${t.status==='done'?'✓':t.status==='active'?'🚚':'·'}</div>
+      <div class="tl-content">
+        <h4>${t.title[lang]}</h4>
+        <p>${t.desc[lang]}</p>
+        <div class="tl-time">🕐 ${t.time}</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderItems(){
+  const cur = lang==='ar'?'ج.م':'EGP';
+  const qtyLabel = lang==='ar'?'الكمية':'Qty';
+  document.getElementById('orderItems').innerHTML = order.items.map(it=>`
+    <div class="order-item">
+      <div class="item-img"><img src="${it.img}" alt="${it.name[lang]}" style="width:100%;height:100%;object-fit:contain"></div>
+      <div class="item-info">
+        <div class="item-brand">${it.brand}</div>
+        <div class="item-name">${it.name[lang]}</div>
+        <div class="item-meta">${qtyLabel}: ${it.qty} × ${it.price} ${cur}</div>
+      </div>
+      <div class="item-price">${it.qty * it.price} ${cur}</div>
+    </div>
+  `).join('');
+}
+
+function renderSummary(){
+  const cur = lang==='ar'?'ج.م':'EGP';
+  const labels = {
+    sub:lang==='ar'?'المجموع الفرعي':'Subtotal',
+    disc:lang==='ar'?'الخصم (كود SKIN25)':'Discount (SKIN25)',
+    del:lang==='ar'?'التوصيل':'Delivery',
+    free:lang==='ar'?'مجاني':'FREE',
+    total:lang==='ar'?'الإجمالي':'Total',
+  };
+  document.getElementById('orderSummary').innerHTML = `
+    <div class="summary-row"><span class="label">${labels.sub}</span><span>${order.subtotal} ${cur}</span></div>
+    <div class="summary-row"><span class="label discount-tag">🏷️ ${labels.disc}</span><span class="discount-tag">- ${order.discount} ${cur}</span></div>
+    <div class="summary-row"><span class="label">🚚 ${labels.del}</span><span style="color:var(--primary);font-weight:600">${labels.free}</span></div>
+    <div class="summary-row total"><span class="label">${labels.total}</span><span>${order.total} ${cur}</span></div>
+  `;
+}
+
+function renderDelivery(){
+  document.getElementById('deliveryInfo').innerHTML = `
+    <div class="delivery-box">
+      <div class="del-icon">📍</div>
+      <div class="del-info">
+        <h5 data-ar="عنوان التوصيل" data-en="Delivery Address">${lang==='ar'?'عنوان التوصيل':'Delivery Address'}</h5>
+        <p>${order.address[lang]}</p>
+      </div>
+    </div>
+    <div class="delivery-box">
+      <div class="del-icon">📱</div>
+      <div class="del-info">
+        <h5 data-ar="رقم التواصل" data-en="Contact Number">${lang==='ar'?'رقم التواصل':'Contact Number'}</h5>
+        <p>${order.phone}</p>
+      </div>
+    </div>
+    <div class="delivery-box">
+      <div class="del-icon">🚚</div>
+      <div class="del-info">
+        <h5 data-ar="المندوب" data-en="Delivery Driver">${lang==='ar'?'المندوب':'Delivery Driver'}</h5>
+        <p>${order.driver[lang]} — ${lang==='ar'?'الوصول خلال':'ETA'} ${order.eta} ${lang==='ar'?'دقيقة':'min'}</p>
+      </div>
+    </div>
+  `;
+}
+
+function renderPayment(){
+  document.getElementById('paymentInfo').innerHTML = `
+    <div class="delivery-box">
+      <div class="del-icon">💳</div>
+      <div class="del-info">
+        <h5>${lang==='ar'?'طريقة الدفع':'Payment Method'}</h5>
+        <p>${order.payment[lang]}</p>
+      </div>
+    </div>
+    <div class="delivery-box">
+      <div class="del-icon">📅</div>
+      <div class="del-info">
+        <h5>${lang==='ar'?'تاريخ الطلب':'Order Date'}</h5>
+        <p>${lang==='ar'?'14 أبريل 2026':'April 14, 2026'}</p>
+      </div>
+    </div>
+  `;
+}
+
+function renderActions(){
+  document.getElementById('actionsRow').innerHTML = `
+    <button class="act-btn act-primary" onclick="callDriver()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+      ${lang==='ar'?'اتصل بالمندوب':'Call Driver'}
+    </button>
+    <button class="act-btn act-outline" onclick="reorder()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg>
+      ${lang==='ar'?'إعادة الطلب':'Reorder'}
+    </button>
+    <button class="act-btn act-danger" onclick="cancelOrder()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+      ${lang==='ar'?'إلغاء الطلب':'Cancel Order'}
+    </button>
+  `;
+}
+
+// INTERACTIONS
+function trackOrder(){
+  const v = document.getElementById('orderInput').value.trim();
+  if(!v) return;
+  // simulate lookup animation
+  const btn = document.querySelector('.lookup-btn');
+  const orig = btn.textContent;
+  btn.textContent = lang==='ar'?'⏳ جاري البحث...':'⏳ Searching...';
+  btn.style.opacity='0.7';
+  setTimeout(()=>{
+    btn.textContent = orig;
+    btn.style.opacity='1';
+    document.getElementById('orderContent').scrollIntoView({behavior:'smooth'});
+  },1200);
+}
+
+let currentRating = 0;
+const ratingTexts = {
+  ar:['','😞 سيئة','😐 مقبولة','🙂 جيدة','😊 ممتازة','🤩 رائعة!'],
+  en:['','😞 Poor','😐 Fair','🙂 Good','😊 Excellent','🤩 Amazing!']
+};
+
+function rate(v){
+  currentRating = v;
+  document.querySelectorAll('.r-star').forEach(s=>{
+    s.classList.toggle('lit', parseInt(s.dataset.v) <= v);
+  });
+  document.getElementById('ratingLabel').textContent = ratingTexts[lang][v];
+}
+
+function submitRating(){
+  if(!currentRating){
+    document.getElementById('ratingLabel').textContent = lang==='ar'?'اختر تقييم أولاً':'Please select a rating first';
+    return;
+  }
+  const card = document.getElementById('ratingCard');
+  card.querySelector('.card-body').innerHTML = `
+    <div style="text-align:center;padding:20px 0">
+      <div style="font-size:48px;margin-bottom:12px">🎉</div>
+      <h4 style="font-size:16px;font-weight:700;margin-bottom:6px">${lang==='ar'?'شكراً لتقييمك!':'Thank you for your review!'}</h4>
+      <p style="font-size:13px;color:var(--text-muted)">${lang==='ar'?'تقييمك يساعدنا نحسن خدمتنا':'Your feedback helps us improve our service'}</p>
+    </div>
+  `;
+}
+
+function callDriver(){
+  alert(lang==='ar'?'جاري الاتصال بالمندوب أحمد...':'Calling driver Ahmed...');
+}
+function reorder(){
+  alert(lang==='ar'?'تم إضافة كل المنتجات للسلة!':'All items added to cart!');
+}
+function cancelOrder(){
+  if(confirm(lang==='ar'?'هل أنت متأكد من إلغاء الطلب؟':'Are you sure you want to cancel this order?')){
+    alert(lang==='ar'?'تم إلغاء الطلب بنجاح':'Order cancelled successfully');
+  }
+}
+
+// INIT
+renderAll();
+</script>
+</body>
+</html>
