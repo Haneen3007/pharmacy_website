@@ -17,7 +17,7 @@ A modern and responsive pharmacy website designed to improve online presence and
 
 ## 🌐 Live Demo
 
-(Add your GitHub Pages link here)
+(https://haneen3007.github.io/pharmacy_website/)
 
 ## 📩 Contact
 
